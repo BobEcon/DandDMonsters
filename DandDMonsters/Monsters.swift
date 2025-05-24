@@ -7,13 +7,14 @@
 
 import Foundation
 
+@Observable
 class Monsters {
     private struct Returned: Codable {
         var count: Int
         var results: [Monster]
     }
     
-    var urlString = "https://pokeapi.co/api/v2/pokemon"
+    var urlString = "https://www.dnd5eapi.co/api/2014/monsters"
     var count = 0
     var monstersArray: [Monster] = []
     var isLoading = false
