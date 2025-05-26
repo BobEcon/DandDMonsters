@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     let monster: Monster
-    var monsterDetail = MonsterDetail()
+    @State private var monsterDetail = MonsterDetail()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
@@ -101,7 +101,7 @@ struct DetailView: View {
                            
                     }
                 }
-                .frame(width: .infinity)
+                .frame(maxWidth: .infinity)
                 .padding()
             
             Spacer()

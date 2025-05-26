@@ -1,28 +1,22 @@
 //
-//  MonsterDetail.swift
+//  Monsters.swift
 //  DandDMonsters
 //
-//  Created by Robert Beachill on 25/05/2025.
+//  Created by Robert Beachill on 23/05/2025.
 //
 
 import Foundation
 
 @Observable
-class MonsterDetail {
+class Monsters {
     private struct Returned: Codable {
-        var size: String
-        var type: String
-        var alignment: String
-        var hit_points: Int
-        var image: String?
+        var count: Int
+        var results: [Monster]
     }
     
-    var urlString: String = ""
-    var size: String = ""
-    var type: String = ""
-    var alignment: String = ""
-    var hit_points: Int = 0
-    var imageURL: String = ""
+    var urlString = "https://www.dnd5eapi.co/api/2014/monsters"
+    var count = 0
+    var monstersArray: [Monster] = []
     var isLoading = false
     
     func getData() async {
@@ -37,6 +31,11 @@ class MonsterDetail {
         }
         
         do {
+            // Only need these if bug in XCode 16.3 Simulator (don't need them here but we did in the CatchEmAll app)
+            //            let configuration = URLSessionConfiguration.ephemeral
+            //            let session = URLSession(configuration: configuration)
+            //            let (data, _) = try await session.data(from: url)
+            
             let (data, _) = try await URLSession.shared.data(from: url)
             
             // Try to decode JSON data into our data structures
@@ -46,11 +45,8 @@ class MonsterDetail {
                 return
             }
             Task { @MainActor in
-                self.size = returned.size
-                self.type = returned.type
-                self.alignment = returned.alignment
-                self.hit_points = returned.hit_points
-                self.imageURL = "https://www.dnd5eapi.co" + (returned.image ?? "n/a")
+                self.count = returned.count
+                self.monstersArray = returned.results
                 isLoading = false
             }
             
