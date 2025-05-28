@@ -18,11 +18,12 @@ struct DetailView: View {
                 .bold()
                 .minimumScaleFactor(0.2)
                 .lineLimit(1)
-            
-            Rectangle()
-                .frame(height: 0)
-                .foregroundStyle(.gray)
                 .padding(.bottom)
+//
+//            Rectangle()
+//                .frame(height: 0)
+//                .foregroundStyle(.gray)
+//                .padding(.bottom)
          
             HStack {
                 VStack(alignment:.leading) {
@@ -32,7 +33,7 @@ struct DetailView: View {
                     Text(monsterDetail.type.capitalized)
                         .font(.title2)
                 }
-                .frame(width: 160,alignment: .leading)
+                .frame(width: 160,alignment: .topLeading)
 //                .border(Color.gray, width: 0.5)
                 Spacer()
                 VStack(alignment:.leading) {
@@ -42,7 +43,7 @@ struct DetailView: View {
                     Text(monsterDetail.size)
                         .font(.title2)
                 }
-                .frame(width: 130,alignment: .leading)
+                .frame(width: 130,alignment: .topLeading)
 //                .border(Color.gray, width: 0.5)
             }
             .padding(.bottom)
@@ -102,7 +103,7 @@ struct DetailView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .padding()
+//                .padding()
             
             Spacer()
         }
